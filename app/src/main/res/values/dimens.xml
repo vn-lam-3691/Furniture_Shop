@@ -4,7 +4,7 @@
     <dimen name="smallButtonWidth">@dimen/_120sdp</dimen>
     <dimen name="smallButtonHeight">@dimen/_45sdp</dimen>
     <dimen name="buttonCorners">@dimen/_5sdp</dimen>
-    <dimen name="mediumButtonWidth">@dimen/_200sdp</dimen>
-    <dimen name="mediumButtonHeight">@dimen/_55sdp</dimen>
-    <dimen name="edittextHeight">@dimen/_60sdp</dimen>
+    <dimen name="mediumButtonWidth">@dimen/_144sdp</dimen>
+    <dimen name="mediumButtonHeight">@dimen/_48sdp</dimen>
+    <dimen name="edittextHeight">@dimen/_48sdp</dimen>
 </resources>

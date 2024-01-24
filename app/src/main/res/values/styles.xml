@@ -44,7 +44,7 @@
     </style>
 
     <dimen name="h4TextSize">@dimen/_28ssp</dimen>
-    <dimen name="h2TextSize">@dimen/_18ssp</dimen>
+    <dimen name="h2TextSize">@dimen/_16ssp</dimen>
     <dimen name="h3TextSize">@dimen/_22ssp</dimen>
 
     <style name="DialogStyle" parent="Theme.Design.Light.BottomSheetDialog">
