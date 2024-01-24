@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="tvRightAddressMargin">@dimen/_115sdp</dimen>
+    <dimen name="smallButtonWidth">@dimen/_120sdp</dimen>
+    <dimen name="smallButtonHeight">@dimen/_45sdp</dimen>
+    <dimen name="buttonCorners">@dimen/_5sdp</dimen>
+    <dimen name="mediumButtonWidth">@dimen/_200sdp</dimen>
+    <dimen name="mediumButtonHeight">@dimen/_55sdp</dimen>
+    <dimen name="edittextHeight">@dimen/_60sdp</dimen>
+</resources>
