@@ -11,11 +11,14 @@ import androidx.lifecycle.lifecycleScope
 import com.vanlam.furnitureshop.R
 import com.vanlam.furnitureshop.data.User
 import com.vanlam.furnitureshop.databinding.FragmentRegisterBinding
+import com.vanlam.furnitureshop.utils.RegisterValidation
 import com.vanlam.furnitureshop.utils.Resource
 import com.vanlam.furnitureshop.viewmodel.RegisterViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 private const val TAG = "RegisterFragment"
 @AndroidEntryPoint
@@ -62,6 +65,28 @@ class RegisterFragment : Fragment() {
                         binding.btnRegister.revertAnimation()
                     }
                     else -> Unit
+                }
+            }
+        }
+
+        lifecycleScope.launchWhenStarted {
+            viewModel.validation.collect { validation ->
+                if (validation.email is RegisterValidation.Failed) {
+                    withContext(Dispatchers.Main) {
+                        binding.edEmailRegister.apply {
+                            requestFocus()
+                            error = validation.email.message
+                        }
+                    }
+                }
+
+                if (validation.password is RegisterValidation.Failed) {
+                    withContext(Dispatchers.Main) {
+                        binding.edPasswordRegister.apply {
+                            requestFocus()
+                            error = validation.password.message
+                        }
+                    }
                 }
             }
         }
