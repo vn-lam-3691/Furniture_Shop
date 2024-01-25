@@ -102,14 +102,15 @@
             app:layout_constraintStart_toStartOf="@id/guidelineLoginLeft"
             app:layout_constraintTop_toBottomOf="@id/edEmailRegister" />
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btnLogin"
+        <br.com.simplepass.loadingbutton.customViews.CircularProgressButton
+            android:id="@+id/btnRegister"
             style="@style/blueButtonStyle"
             android:layout_width="0dp"
             android:layout_height="@dimen/mediumButtonHeight"
             android:layout_marginTop="@dimen/_28sdp"
             android:layout_marginBottom="@dimen/_12sdp"
-            android:text="Login"
+            android:text="Register"
+            app:spinning_bar_color="@color/white"
             app:layout_constraintEnd_toEndOf="@id/guidelineLoginRight"
             app:layout_constraintStart_toStartOf="@id/guidelineLoginLeft"
             app:layout_constraintTop_toBottomOf="@id/edPasswordRegister" />
@@ -127,7 +128,7 @@
             app:layout_constraintEnd_toStartOf="@id/layout_google"
             app:layout_constraintHorizontal_chainStyle="spread_inside"
             app:layout_constraintStart_toStartOf="@id/guidelineLoginLeft"
-            app:layout_constraintTop_toBottomOf="@id/btnLogin">
+            app:layout_constraintTop_toBottomOf="@id/btnRegister">
 
             <ImageView
                 android:layout_width="@dimen/_24sdp"
@@ -156,7 +157,7 @@
             android:gravity="center_vertical"
             app:layout_constraintEnd_toEndOf="@id/guidelineLoginRight"
             app:layout_constraintStart_toEndOf="@+id/layout_facebook"
-            app:layout_constraintTop_toBottomOf="@id/btnLogin">
+            app:layout_constraintTop_toBottomOf="@id/btnRegister">
 
             <ImageView
                 android:layout_width="@dimen/_24sdp"

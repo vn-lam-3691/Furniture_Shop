@@ -1,6 +1,8 @@
 buildscript {
     dependencies {
         classpath 'com.google.gms:google-services:4.4.0'
+        classpath 'com.android.tools.build:gradle:4.2.1'
+        classpath 'com.google.dagger:hilt-android-gradle-plugin:2.50'
 
         def nav_version = "2.7.6"
         classpath "androidx.navigation:navigation-safe-args-gradle-plugin:$nav_version"
@@ -11,7 +13,6 @@ plugins {
     id 'com.android.application' version '8.2.1' apply false
     id 'org.jetbrains.kotlin.android' version '1.9.22' apply false
     id 'androidx.navigation.safeargs' version '2.7.6' apply false
-    id 'com.google.dagger.hilt.android' version '2.44' apply false
 }
 
 task clean(type: Delete) {
