@@ -3,7 +3,9 @@ package com.vanlam.furnitureshop.viewmodel
 import androidx.lifecycle.ViewModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.firestore.FirebaseFirestore
 import com.vanlam.furnitureshop.data.User
+import com.vanlam.furnitureshop.utils.Constants.USER_COLLECTION
 import com.vanlam.furnitureshop.utils.RegisterFieldState
 import com.vanlam.furnitureshop.utils.RegisterValidation
 import com.vanlam.furnitureshop.utils.Resource
@@ -19,10 +21,11 @@ import javax.inject.Inject
 
 @HiltViewModel
 class RegisterViewModel @Inject constructor(
-    private val firebaseAuth: FirebaseAuth
+    private val firebaseAuth: FirebaseAuth,
+    private val db: FirebaseFirestore
 ): ViewModel() {
-    private val _register = MutableStateFlow<Resource<FirebaseUser>>(Resource.Unspecified())
-    val register: Flow<Resource<FirebaseUser>> = _register
+    private val _register = MutableStateFlow<Resource<User>>(Resource.Unspecified())
+    val register: Flow<Resource<User>> = _register
 
     private val _validation = Channel<RegisterFieldState>()
     val validation = _validation.receiveAsFlow()
@@ -37,7 +40,7 @@ class RegisterViewModel @Inject constructor(
                 .addOnSuccessListener { authResult ->
                     // Handle if register success
                     authResult.user?.let {
-                        _register.value = Resource.Success(it)
+                        saveUserInfo(it.uid, user)
                     }
                 }
                 .addOnFailureListener {
@@ -54,6 +57,18 @@ class RegisterViewModel @Inject constructor(
                 _validation.send(registerFieldState)
             }
         }
+    }
+
+    private fun saveUserInfo(userUid: String, user: User) {
+        db.collection(USER_COLLECTION)
+            .document(userUid)
+            .set(user)
+            .addOnSuccessListener {
+                _register.value = Resource.Success(user)
+            }
+            .addOnFailureListener {
+                _register.value = Resource.Error(it.message.toString())
+            }
     }
 
     private fun validateData(user: User, password: String): Boolean {
