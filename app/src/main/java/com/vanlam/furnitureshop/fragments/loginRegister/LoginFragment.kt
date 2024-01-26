@@ -10,9 +10,11 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.snackbar.Snackbar
 import com.vanlam.furnitureshop.R
 import com.vanlam.furnitureshop.activities.ShoppingActivity
 import com.vanlam.furnitureshop.databinding.FragmentLoginBinding
+import com.vanlam.furnitureshop.dialog.setupBottomSheetDialog
 import com.vanlam.furnitureshop.utils.Resource
 import com.vanlam.furnitureshop.viewmodel.LoginViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -47,6 +49,12 @@ class LoginFragment : Fragment() {
             }
         }
 
+        binding.tvForgotPasswordLogin.setOnClickListener {
+            setupBottomSheetDialog { email ->
+                viewModel.resetPassword(email)
+            }
+        }
+
         lifecycleScope.launchWhenStarted {
             viewModel.login.collect {
                 when (it) {
@@ -64,6 +72,21 @@ class LoginFragment : Fragment() {
                     is Resource.Loading -> {
                         binding.btnLogin.startAnimation()
                     }
+                    else -> Unit
+                }
+            }
+        }
+
+        lifecycleScope.launchWhenStarted {
+            viewModel.resetPassword.collect {
+                when (it) {
+                    is Resource.Success -> {
+                        Snackbar.make(requireView(), "Reset link was send to your email", Snackbar.LENGTH_SHORT).show()
+                    }
+                    is Resource.Error -> {
+                        Snackbar.make(requireView(), "Error: ${it.message}", Snackbar.LENGTH_SHORT).show()
+                    }
+                    is Resource.Loading -> { }
                     else -> Unit
                 }
             }
