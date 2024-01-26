@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.vanlam.furnitureshop.R
 import com.vanlam.furnitureshop.data.User
 import com.vanlam.furnitureshop.databinding.FragmentRegisterBinding
@@ -37,6 +38,11 @@ class RegisterFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        binding.tvDontHaveAccount.setOnClickListener {
+            findNavController().navigate(R.id.action_registerFragment_to_loginFragment)
+        }
+
         binding.apply {
             btnRegister.setOnClickListener {
                 val firstName = edFirstNameRegister.text.trim().toString()

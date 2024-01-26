@@ -49,7 +49,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_16sdp"
             android:includeFontPadding="false"
-            android:text="@string/title_login"
+            android:text="Do you have an account? Login now"
             app:layout_constraintEnd_toEndOf="@id/guidelineLoginRight"
             app:layout_constraintStart_toStartOf="@id/guidelineLoginLeft"
             app:layout_constraintTop_toBottomOf="@id/tvRightAddressShopping" />
