@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "344111594366",
+    "project_id": "furniture-shop-bc684",
+    "storage_bucket": "furniture-shop-bc684.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:344111594366:android:79d8b1d3ace5df74c2d12f",
+        "android_client_info": {
+          "package_name": "com.vanlam.furnitureadder"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBZlxeA_R8ykYgNBJ0xfzdFq1VZZBAkATQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:344111594366:android:bc035490a790ccb4c2d12f",
+        "android_client_info": {
+          "package_name": "com.vanlam.furnitureshop"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBZlxeA_R8ykYgNBJ0xfzdFq1VZZBAkATQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

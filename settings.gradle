@@ -17,3 +17,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "Furniture Shop"
 include ':app'
+include ':furnitureadder'

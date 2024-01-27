@@ -18,6 +18,22 @@
           <timeTargetWasSelectedWithDropDown value="2024-01-24T16:18:36.904334100Z" />
         </State>
       </entry>
+      <entry key="furnitureadder">
+        <State>
+          <targetSelectedWithDropDown>
+            <Target>
+              <type value="QUICK_BOOT_TARGET" />
+              <deviceKey>
+                <Key>
+                  <type value="VIRTUAL_DEVICE_PATH" />
+                  <value value="C:\Users\VAN LAM\.android\avd\Pixel_7_API_31.avd" />
+                </Key>
+              </deviceKey>
+            </Target>
+          </targetSelectedWithDropDown>
+          <timeTargetWasSelectedWithDropDown value="2024-01-27T10:43:34.971679Z" />
+        </State>
+      </entry>
     </value>
   </component>
 </project>
