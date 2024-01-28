@@ -1,8 +1,11 @@
 package com.vanlam.furnitureshop.di
 
+import android.app.Application
+import android.content.Context.MODE_PRIVATE
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import com.vanlam.furnitureshop.utils.Constants.INTRODUCTION_SP
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -19,4 +22,7 @@ object AppModule {
     @Provides
     @Singleton
     fun provideFirestoreDatabase() = Firebase.firestore
+
+    @Provides
+    fun provideIntroductionSP(application: Application) = application.getSharedPreferences(INTRODUCTION_SP, MODE_PRIVATE)
 }
