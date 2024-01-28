@@ -30,6 +30,8 @@ class HomeFragment: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        binding.viewpagerHome.isUserInputEnabled = false
+
         val categoryFragments = arrayListOf<Fragment>(
             MainCategoryFragment(),
             ChairFragment(),

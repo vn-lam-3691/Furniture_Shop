@@ -84,6 +84,7 @@
                 android:layout_marginEnd="@dimen/_16sdp"
                 android:scrollbars="none"
                 android:overScrollMode="never"
+                android:clipToPadding="false"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tvBestProduct"/>
