@@ -16,6 +16,7 @@
             android:id="@+id/imageSpecialRvItem"
             android:layout_width="@dimen/_90sdp"
             android:layout_height="@dimen/_90sdp"
+            android:scaleType="centerCrop"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             android:layout_marginStart="@dimen/_16sdp"
@@ -33,8 +34,9 @@
             android:fontFamily="@font/poppins_thin"
             android:textStyle="bold"
             android:textColor="@color/black"
-            android:textSize="@dimen/_16ssp"
-            android:maxLines="2"/>
+            android:textSize="@dimen/_14ssp"
+            android:maxLines="2"
+            android:ellipsize="end"/>
 
         <TextView
             android:id="@+id/tvSpecialProductPrice"

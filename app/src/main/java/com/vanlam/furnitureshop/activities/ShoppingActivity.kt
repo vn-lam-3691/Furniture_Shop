@@ -6,7 +6,9 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.vanlam.furnitureshop.R
 import com.vanlam.furnitureshop.databinding.ActivityShoppingBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class ShoppingActivity : AppCompatActivity() {
     private val binding by lazy {
         ActivityShoppingBinding.inflate(layoutInflater)
