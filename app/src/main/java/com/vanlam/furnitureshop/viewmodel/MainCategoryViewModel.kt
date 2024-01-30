@@ -3,6 +3,7 @@ package com.vanlam.furnitureshop.viewmodel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.Query
 import com.vanlam.furnitureshop.data.Product
 import com.vanlam.furnitureshop.utils.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -24,6 +25,8 @@ class MainCategoryViewModel @Inject constructor(
 
     private val _bestProduct = MutableStateFlow<Resource<List<Product>>>(Resource.Unspecified())
     val bestProduct: StateFlow<Resource<List<Product>>> = _bestProduct
+
+    private val pageInfo = PageInfo()
 
     init {
         fetchSpecialProducts()
@@ -70,21 +73,33 @@ class MainCategoryViewModel @Inject constructor(
     }
 
     fun fetchBestProducts() {
-        viewModelScope.launch {
-            _bestProduct.emit(Resource.Loading())
-        }
+        if (!pageInfo.isPagingEnd) {
+            viewModelScope.launch {
+                _bestProduct.emit(Resource.Loading())
+            }
 
-        firestore.collection("products").get()
-            .addOnSuccessListener { result ->
-                val bestProductList = result.toObjects(Product::class.java)
-                viewModelScope.launch {
-                    _bestProduct.emit(Resource.Success(bestProductList))
+            firestore.collection("products")
+                .limit(pageInfo.bestProductPage * 10).get()
+                .addOnSuccessListener { result ->
+                    val bestProductList = result.toObjects(Product::class.java)
+                    pageInfo.isPagingEnd = bestProductList == pageInfo.oldBestProduct
+                    pageInfo.oldBestProduct = bestProductList
+                    viewModelScope.launch {
+                        _bestProduct.emit(Resource.Success(bestProductList))
+                    }
+                    pageInfo.bestProductPage++
                 }
-            }
-            .addOnFailureListener {
-                viewModelScope.launch {
-                    _bestProduct.emit(Resource.Error(it.message.toString()))
+                .addOnFailureListener {
+                    viewModelScope.launch {
+                        _bestProduct.emit(Resource.Error(it.message.toString()))
+                    }
                 }
-            }
+        }
     }
+
+    internal data class PageInfo(
+        var bestProductPage: Long = 1,
+        var oldBestProduct: List<Product> = emptyList(),
+        var isPagingEnd: Boolean = false
+    )
 }
