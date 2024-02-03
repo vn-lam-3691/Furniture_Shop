@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:fillViewport="true"
+    tools:context=".fragments.shopping.ProductDetailFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingStart="@dimen/_14sdp"
+        android:paddingEnd="@dimen/_14sdp">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardView_product"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_360sdp"
+            android:layout_marginTop="@dimen/_20sdp"
+            app:cardCornerRadius="@dimen/_12sdp"
+            app:cardElevation="0dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+            
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/viewPager_product_image"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+
+            <ImageView
+                android:id="@+id/img_close"
+                android:layout_width="@dimen/_32sdp"
+                android:layout_height="@dimen/_32sdp"
+                android:padding="@dimen/_5sdp"
+                android:src="@drawable/round_close_24"
+                app:tint="@color/black"/>
+            
+        </androidx.cardview.widget.CardView>
+
+        <LinearLayout
+            android:id="@+id/layout_name_price"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="@dimen/_16sdp"
+            app:layout_constraintTop_toBottomOf="@id/cardView_product"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <TextView
+                android:id="@+id/tvProductName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:includeFontPadding="false"
+                style="@style/h3"
+                android:text="Family furniture"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvProductPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_6sdp"
+                android:includeFontPadding="false"
+                android:fontFamily="@font/poppins_light"
+                android:textColor="@color/g_gray700"
+                android:text="$499"
+                android:textStyle="bold"
+                android:textSize="@dimen/_18ssp"/>
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tvProductDesc"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_6sdp"
+            android:includeFontPadding="false"
+            android:fontFamily="@font/poppins_light"
+            android:text="The best collections in 2023"
+            android:textSize="@dimen/_14ssp"
+            app:layout_constraintStart_toStartOf="@id/layout_name_price"
+            app:layout_constraintEnd_toEndOf="@id/layout_name_price"
+            app:layout_constraintTop_toBottomOf="@id/layout_name_price"/>
+
+        <LinearLayout
+            android:id="@+id/layout_colors"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_12sdp"
+            android:orientation="vertical"
+            app:layout_constraintTop_toBottomOf="@id/tvProductDesc"
+            app:layout_constraintStart_toStartOf="@id/tvProductDesc"
+            app:layout_constraintEnd_toEndOf="@id/tvProductDesc">
+
+            <TextView
+                android:id="@+id/tvProductColors"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_6sdp"
+                android:includeFontPadding="false"
+                style="@style/h3"
+                android:text="Color"
+                android:textStyle="bold"
+                android:textSize="@dimen/_18ssp"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvProductColors"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_4sdp"
+                android:clipToPadding="false"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layout_size"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_12sdp"
+            android:orientation="vertical"
+            app:layout_constraintTop_toBottomOf="@id/layout_colors"
+            app:layout_constraintStart_toStartOf="@id/tvProductDesc"
+            app:layout_constraintEnd_toEndOf="@id/tvProductDesc">
+
+            <TextView
+                android:id="@+id/tvProductSizes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_6sdp"
+                android:includeFontPadding="false"
+                style="@style/h3"
+                android:text="Size"
+                android:textStyle="bold"
+                android:textSize="@dimen/_18ssp"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvProductSize"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_4sdp"
+                android:clipToPadding="false"/>
+
+        </LinearLayout>
+
+        <br.com.simplepass.loadingbutton.customViews.CircularProgressButton
+            android:id="@+id/btnAddToCart"
+            style="@style/blueButtonStyle"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/mediumButtonHeight"
+            android:layout_marginTop="@dimen/_40sdp"
+            android:layout_marginBottom="@dimen/_12sdp"
+            android:text="Add to cart"
+            app:spinning_bar_color="@color/white"
+            app:layout_constraintEnd_toEndOf="@id/layout_size"
+            app:layout_constraintStart_toStartOf="@id/layout_size"
+            app:layout_constraintTop_toBottomOf="@id/layout_size"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.core.widget.NestedScrollView>
