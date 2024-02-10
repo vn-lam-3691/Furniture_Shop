@@ -11,6 +11,7 @@ import com.vanlam.furnitureshop.data.Product
 import com.vanlam.furnitureshop.databinding.BestDealsRvItemBinding
 
 class BestDealProductAdapter: RecyclerView.Adapter<BestDealProductAdapter.BestDealProductViewHolder>() {
+    var onClick: ((Product) -> Unit)? = null
 
     inner class BestDealProductViewHolder(private val binding: BestDealsRvItemBinding): RecyclerView.ViewHolder(binding.root) {
         fun bindData(product: Product) {
@@ -56,5 +57,9 @@ class BestDealProductAdapter: RecyclerView.Adapter<BestDealProductAdapter.BestDe
     override fun onBindViewHolder(holder: BestDealProductViewHolder, position: Int) {
         val product = differ.currentList[position]
         holder.bindData(product)
+
+        holder.itemView.setOnClickListener {
+            onClick?.invoke(product)
+        }
     }
 }

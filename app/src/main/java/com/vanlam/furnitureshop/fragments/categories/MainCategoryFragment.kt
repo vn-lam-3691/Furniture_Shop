@@ -10,6 +10,7 @@ import androidx.core.widget.NestedScrollView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
@@ -20,6 +21,7 @@ import com.vanlam.furnitureshop.adapters.SpecialProductAdapter
 import com.vanlam.furnitureshop.databinding.ActivityShoppingBinding
 import com.vanlam.furnitureshop.databinding.FragmentMainCategoryBinding
 import com.vanlam.furnitureshop.utils.Resource
+import com.vanlam.furnitureshop.utils.showBottomNavigationView
 import com.vanlam.furnitureshop.viewmodel.MainCategoryViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
@@ -48,6 +50,21 @@ class MainCategoryFragment : Fragment() {
         setupSpecialProductRv()
         setupBestDealProductRv()
         setupBestProductRv()
+
+        specialProductAdapter.onClick = {
+            val bundle = Bundle().apply { putParcelable("product", it) }
+            findNavController().navigate(R.id.action_homeFragment_to_productDetailFragment, bundle)
+        }
+
+        bestProductAdapter.onClick = {
+            val bundle = Bundle().apply { putParcelable("product", it) }
+            findNavController().navigate(R.id.action_homeFragment_to_productDetailFragment, bundle)
+        }
+
+        bestDealProductAdapter.onClick = {
+            val bundle = Bundle().apply { putParcelable("product", it) }
+            findNavController().navigate(R.id.action_homeFragment_to_productDetailFragment, bundle)
+        }
 
         lifecycleScope.launchWhenStarted {
             viewModel.specialProducts.collectLatest {
@@ -146,5 +163,10 @@ class MainCategoryFragment : Fragment() {
             layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
             adapter = bestDealProductAdapter
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        showBottomNavigationView()
     }
 }

@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ProgressBar
 import androidx.core.widget.NestedScrollView
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -14,6 +15,7 @@ import com.vanlam.furnitureshop.R
 import com.vanlam.furnitureshop.adapters.BestProductAdapter
 import com.vanlam.furnitureshop.databinding.FragmentBaseCategoryBinding
 import com.vanlam.furnitureshop.databinding.FragmentMainCategoryBinding
+import com.vanlam.furnitureshop.utils.showBottomNavigationView
 
 open class BaseCategoryFragment : Fragment(R.layout.fragment_base_category) {
     private lateinit var binding: FragmentBaseCategoryBinding
@@ -34,6 +36,11 @@ open class BaseCategoryFragment : Fragment(R.layout.fragment_base_category) {
 
         setupOfferProductRv()
         setupBestProductRv()
+
+        bestProductAdapter.onClick = {
+            val bundle = Bundle().apply { putParcelable("product", it) }
+            findNavController().navigate(R.id.action_homeFragment_to_productDetailFragment, bundle)
+        }
 
 //        binding.rvOffer.addOnScrollListener(object : RecyclerView.OnScrollListener() {
 //            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
@@ -84,5 +91,10 @@ open class BaseCategoryFragment : Fragment(R.layout.fragment_base_category) {
 
     protected fun hideBestLoading() {
         binding.progressLoadBestProduct.visibility = View.GONE
+    }
+
+    override fun onResume() {
+        super.onResume()
+        showBottomNavigationView()
     }
 }
