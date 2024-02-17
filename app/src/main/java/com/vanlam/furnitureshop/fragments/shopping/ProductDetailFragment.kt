@@ -5,6 +5,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -15,15 +18,24 @@ import com.vanlam.furnitureshop.activities.ShoppingActivity
 import com.vanlam.furnitureshop.adapters.ColorProductAdapter
 import com.vanlam.furnitureshop.adapters.SizeProductAdapter
 import com.vanlam.furnitureshop.adapters.ViewPager2Image
+import com.vanlam.furnitureshop.data.CartProduct
 import com.vanlam.furnitureshop.databinding.FragmentProductDetailBinding
+import com.vanlam.furnitureshop.utils.Resource
 import com.vanlam.furnitureshop.utils.hideBottomNavigationView
+import com.vanlam.furnitureshop.viewmodel.DetailViewModel
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collectLatest
 
+@AndroidEntryPoint
 class ProductDetailFragment : Fragment() {
     private lateinit var binding: FragmentProductDetailBinding
     private val viewPagerAdapter by lazy { ViewPager2Image() }
     private val colorAdapter by lazy { ColorProductAdapter() }
     private val sizeAdapter by lazy { SizeProductAdapter() }
     private val agrs by navArgs<ProductDetailFragmentArgs>()
+    private var selectedColor: Int? = null
+    private var selectedSize: String? = null
+    private val viewModel by viewModels<DetailViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -47,6 +59,37 @@ class ProductDetailFragment : Fragment() {
 
         binding.imgClose.setOnClickListener {
             findNavController().navigateUp()
+        }
+
+        colorAdapter.onItemClick = {
+            selectedColor = it
+        }
+
+        sizeAdapter.onItemClick = {
+            selectedSize = it
+        }
+
+        binding.btnAddToCart.setOnClickListener {
+            viewModel.addUpdateProductInCart(CartProduct(product, 1, selectedColor, selectedSize))
+        }
+
+        lifecycleScope.launchWhenStarted {
+            viewModel.addToCart.collectLatest {
+                when (it) {
+                    is Resource.Loading -> {
+                        binding.btnAddToCart.startAnimation()
+                    }
+                    is Resource.Success -> {
+                        binding.btnAddToCart.revertAnimation()
+                        Toast.makeText(requireContext(), "Add to cart success", Toast.LENGTH_SHORT).show()
+                    }
+                    is Resource.Error -> {
+                        binding.btnAddToCart.revertAnimation()
+                        Toast.makeText(requireContext(), it.message, Toast.LENGTH_SHORT).show()
+                    }
+                    else -> Unit
+                }
+            }
         }
 
         binding.apply {
