@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.vanlam.furnitureshop.data.Product
 import com.vanlam.furnitureshop.databinding.ProductRvItemBinding
+import com.vanlam.furnitureshop.helper.getProductPrice
 
 class BestProductAdapter: RecyclerView.Adapter<BestProductAdapter.BestProductViewHolder>() {
     var onClick: ((Product) -> Unit)? = null
@@ -21,8 +22,7 @@ class BestProductAdapter: RecyclerView.Adapter<BestProductAdapter.BestProductVie
                 tvName.text = product.name
                 tvPrice.text = "$ ${product.price.toString()}"
                 product.offerPercentage?.let {
-                    val remainingPricePercentage = 1f - product.offerPercentage
-                    val priceAfterOffer = remainingPricePercentage * product.price
+                    val priceAfterOffer = product.offerPercentage.getProductPrice(product.price)
                     tvNewPrice.text = "$ ${String.format("%.2f", priceAfterOffer)}"
                     tvPrice.paintFlags = Paint.STRIKE_THRU_TEXT_FLAG
                 }

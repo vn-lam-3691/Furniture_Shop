@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:backgroundTint="@color/g_white"
+    android:elevation="0dp">
+    
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <View
+            android:id="@+id/line"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_1sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:background="@color/white"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
+        
+        <ImageView
+            android:id="@+id/imageCartProduct"
+            android:layout_width="@dimen/_100sdp"
+            android:layout_height="@dimen/_100sdp"
+            android:layout_marginTop="@dimen/_4sdp"
+            android:layout_marginBottom="@dimen/_4sdp"
+            android:layout_marginStart="@dimen/_4sdp"
+            android:scaleType="centerCrop"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <TextView
+            android:id="@+id/tvCartProductName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_6sdp"
+            android:layout_marginEnd="@dimen/_6sdp"
+            android:includeFontPadding="false"
+            android:fontFamily="@font/poppins_light"
+            android:text="Table"
+            android:textSize="@dimen/_16ssp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@id/imageCartProduct"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/imageCartProduct"/>
+
+        <ImageView
+            android:id="@+id/imageIncreaseQuantity"
+            android:layout_width="@dimen/_22sdp"
+            android:layout_height="@dimen/_22sdp"
+            android:layout_marginEnd="@dimen/_6sdp"
+            android:layout_marginBottom="@dimen/_6sdp"
+            android:src="@drawable/ic_increase"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <TextView
+            android:id="@+id/tvQuantity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/_6sdp"
+            android:includeFontPadding="false"
+            android:fontFamily="@font/poppins_light"
+            android:text="1"
+            android:textSize="@dimen/_16ssp"
+            android:textColor="@color/g_black"
+            android:ems="1"
+            android:textAlignment="center"
+            app:layout_constraintEnd_toStartOf="@id/imageIncreaseQuantity"
+            app:layout_constraintTop_toTopOf="@id/imageIncreaseQuantity"
+            app:layout_constraintBottom_toBottomOf="@id/imageIncreaseQuantity"/>
+
+        <ImageView
+            android:id="@+id/imageDecreaseQuantity"
+            android:layout_width="@dimen/_22sdp"
+            android:layout_height="@dimen/_22sdp"
+            android:layout_marginEnd="@dimen/_6sdp"
+            android:src="@drawable/ic_decrease"
+            app:layout_constraintEnd_toStartOf="@id/tvQuantity"
+            app:layout_constraintTop_toTopOf="@id/imageIncreaseQuantity"
+            app:layout_constraintBottom_toBottomOf="@id/imageIncreaseQuantity"/>
+
+        <TextView
+            android:id="@+id/tvCartProductPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:includeFontPadding="false"
+            android:fontFamily="@font/poppins_light"
+            android:text="$499"
+            android:textSize="@dimen/_16ssp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="@id/tvCartProductName"
+            app:layout_constraintBottom_toBottomOf="@id/imageDecreaseQuantity"/>
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/imageCartProductColor"
+            android:layout_width="@dimen/_16sdp"
+            android:layout_height="@dimen/_16sdp"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:src="@color/g_blue"
+            app:layout_constraintStart_toStartOf="@id/tvCartProductName"
+            app:layout_constraintTop_toBottomOf="@id/tvCartProductName"/>
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/imageCartProductSize"
+            android:layout_width="@dimen/_16sdp"
+            android:layout_height="@dimen/_16sdp"
+            android:layout_marginStart="@dimen/_6sdp"
+            android:src="@color/g_blue_gray200"
+            app:layout_constraintStart_toEndOf="@id/imageCartProductColor"
+            app:layout_constraintTop_toTopOf="@id/imageCartProductColor"
+            app:layout_constraintBottom_toBottomOf="@id/imageCartProductColor"/>
+
+        <TextView
+            android:id="@+id/tvCartProductSize"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:includeFontPadding="false"
+            android:fontFamily="@font/poppins_light"
+            android:text="M"
+            android:textSize="@dimen/_11ssp"
+            android:textColor="@color/white"
+            android:textAlignment="center"
+            app:layout_constraintTop_toTopOf="@id/imageCartProductSize"
+            app:layout_constraintBottom_toBottomOf="@id/imageCartProductSize"
+            app:layout_constraintStart_toStartOf="@id/imageCartProductSize"
+            app:layout_constraintEnd_toEndOf="@id/imageCartProductSize"/>
+        
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>
