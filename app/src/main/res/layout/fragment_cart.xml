@@ -41,7 +41,7 @@
                     android:fontFamily="@font/poppins_light"
                     android:text="My Cart"
                     android:textColor="@color/black"
-                    android:textSize="20sp"
+                    android:textSize="@dimen/_16ssp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="@id/imageCloseCart"
                     app:layout_constraintStart_toEndOf="@id/imageCloseCart"
