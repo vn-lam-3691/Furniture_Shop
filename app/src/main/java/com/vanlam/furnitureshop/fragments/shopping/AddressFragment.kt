@@ -75,5 +75,9 @@ class AddressFragment : Fragment() {
                 viewModel.addNewAddress(newAddress)
             }
         }
+
+        binding.imageAddressClose.setOnClickListener {
+            findNavController().navigateUp()
+        }
     }
 }

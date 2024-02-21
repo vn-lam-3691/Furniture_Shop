@@ -27,6 +27,7 @@ class CartFragment: Fragment() {
     private lateinit var binding: FragmentCartBinding
     private val cartAdapter by lazy { CartProductAdapter() }
     private val viewModel by activityViewModels<CartViewModel>()
+    private var totalPrice = 0f
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -73,6 +74,7 @@ class CartFragment: Fragment() {
         lifecycleScope.launchWhenStarted {
             viewModel.totalPriceCart.collectLatest { price ->
                 price?.let {
+                    totalPrice = it
                     binding.tvTotalPrice.text = "$ ${String.format("%.2f", it)}"
                 }
             }
@@ -107,6 +109,11 @@ class CartFragment: Fragment() {
 
         cartAdapter.onDecreaseClick = {
             viewModel.changeQuantity(it, FirebaseCommon.QuantityChanging.DECREASE)
+        }
+
+        binding.buttonCheckout.setOnClickListener {
+            val action = CartFragmentDirections.actionCartFragmentToBillingFragment(totalPrice, cartAdapter.differ.currentList.toTypedArray())
+            findNavController().navigate(action)
         }
     }
 
