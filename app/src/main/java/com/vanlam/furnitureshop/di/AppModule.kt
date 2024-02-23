@@ -6,6 +6,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.FirebaseStorage
 import com.vanlam.furnitureshop.firebase.FirebaseCommon
 import com.vanlam.furnitureshop.utils.Constants.INTRODUCTION_SP
 import dagger.Module
@@ -24,6 +25,10 @@ object AppModule {
     @Provides
     @Singleton
     fun provideFirestoreDatabase() = Firebase.firestore
+
+    @Provides
+    @Singleton
+    fun provideStorageRef() = FirebaseStorage.getInstance().reference
 
     @Provides
     fun provideIntroductionSP(application: Application) = application.getSharedPreferences(INTRODUCTION_SP, MODE_PRIVATE)
