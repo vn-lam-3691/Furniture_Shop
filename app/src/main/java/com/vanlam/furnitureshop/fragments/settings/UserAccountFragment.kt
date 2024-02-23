@@ -19,9 +19,11 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.snackbar.Snackbar
 import com.vanlam.furnitureshop.R
 import com.vanlam.furnitureshop.data.User
 import com.vanlam.furnitureshop.databinding.FragmentUserAccountBinding
+import com.vanlam.furnitureshop.dialog.setupBottomSheetDialog
 import com.vanlam.furnitureshop.utils.Resource
 import com.vanlam.furnitureshop.viewmodel.UserAccountViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -94,6 +96,21 @@ class UserAccountFragment: Fragment() {
             }
         }
 
+        lifecycleScope.launchWhenStarted {
+            viewModel.resetPassword.collect {
+                when (it) {
+                    is Resource.Success -> {
+                        Snackbar.make(requireView(), "Reset link was send to your email", Snackbar.LENGTH_SHORT).show()
+                    }
+                    is Resource.Error -> {
+                        Snackbar.make(requireView(), "Error: ${it.message}", Snackbar.LENGTH_SHORT).show()
+                    }
+                    is Resource.Loading -> { }
+                    else -> Unit
+                }
+            }
+        }
+
         binding.buttonSave.setOnClickListener {
             binding.apply {
                 val firstName = edFirstName.text.trim().toString()
@@ -109,6 +126,16 @@ class UserAccountFragment: Fragment() {
             val intent = Intent(Intent.ACTION_GET_CONTENT)
             intent.type = "image/*"
             imageActivityResultLauncher.launch(intent)
+        }
+
+        binding.tvUpdatePassword.setOnClickListener {
+            setupAlertDialog()
+        }
+    }
+
+    private fun setupAlertDialog() {
+        setupBottomSheetDialog {  email ->
+            viewModel.resetPassword(email)
         }
     }
 
