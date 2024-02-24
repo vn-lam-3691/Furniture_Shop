@@ -64,7 +64,9 @@ class BillingFragment : Fragment() {
         setupProductsAdapter()
 
         binding.imageAddAddress.setOnClickListener {
-            findNavController().navigate(R.id.action_billingFragment_to_addressFragment)
+//            findNavController().navigate(R.id.action_billingFragment_to_addressFragment)
+            val action = BillingFragmentDirections.actionBillingFragmentToAddressFragment(null)
+            findNavController().navigate(action)
         }
 
         lifecycleScope.launch {
