@@ -15,12 +15,12 @@ import com.vanlam.furnitureshop.R
 import com.vanlam.furnitureshop.adapters.BestProductAdapter
 import com.vanlam.furnitureshop.databinding.FragmentBaseCategoryBinding
 import com.vanlam.furnitureshop.databinding.FragmentMainCategoryBinding
+import com.vanlam.furnitureshop.utils.GridSpacingItemDecoration
 import com.vanlam.furnitureshop.utils.showBottomNavigationView
 
 open class BaseCategoryFragment : Fragment(R.layout.fragment_base_category) {
     private lateinit var binding: FragmentBaseCategoryBinding
     protected val bestProductAdapter by lazy { BestProductAdapter() }
-    protected val offerProductAdapter by lazy { BestProductAdapter() }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -34,23 +34,12 @@ open class BaseCategoryFragment : Fragment(R.layout.fragment_base_category) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        setupOfferProductRv()
         setupBestProductRv()
 
         bestProductAdapter.onClick = {
             val bundle = Bundle().apply { putParcelable("product", it) }
             findNavController().navigate(R.id.action_homeFragment_to_productDetailFragment, bundle)
         }
-
-//        binding.rvOffer.addOnScrollListener(object : RecyclerView.OnScrollListener() {
-//            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-//                super.onScrolled(recyclerView, dx, dy)
-//
-//                if (!recyclerView.canScrollVertically(1) && dx != 0) {
-//                    onOfferProductPagingRequest()
-//                }
-//            }
-//        })
 
         binding.nestedScrollCate.setOnScrollChangeListener(NestedScrollView.OnScrollChangeListener { v, _, scrollY, _, _ ->
             if (v.getChildAt(0).bottom <= v.height + scrollY) {
@@ -59,7 +48,6 @@ open class BaseCategoryFragment : Fragment(R.layout.fragment_base_category) {
         })
     }
 
-//    open fun onOfferProductPagingRequest() { }
 
     open fun onBestProductPagingRequest() { }
 
@@ -67,22 +55,10 @@ open class BaseCategoryFragment : Fragment(R.layout.fragment_base_category) {
         binding.rvBestProduct.apply {
             layoutManager = GridLayoutManager(requireContext(), 2, GridLayoutManager.VERTICAL, false)
             adapter = bestProductAdapter
+
+            val spacingInPixels = resources.getDimensionPixelSize(R.dimen.gridSpacing)
+            addItemDecoration(GridSpacingItemDecoration(spacingInPixels, 2))
         }
-    }
-
-    private fun setupOfferProductRv() {
-        binding.rvOffer.apply {
-            layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-            adapter = offerProductAdapter
-        }
-    }
-
-    protected fun showOfferLoading() {
-        binding.progressLoadOffer.visibility = View.VISIBLE
-    }
-
-    protected fun hideOfferLoading() {
-        binding.progressLoadOffer.visibility = View.GONE
     }
 
     protected fun showBestLoading() {

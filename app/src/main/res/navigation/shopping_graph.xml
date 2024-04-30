@@ -94,7 +94,11 @@
         android:id="@+id/ordersFragment"
         android:name="com.vanlam.furnitureshop.fragments.settings.OrdersFragment"
         android:label="OrdersFragment"
-        tools:layout="@layout/fragment_orders"/>
+        tools:layout="@layout/fragment_orders">
+        <action
+            android:id="@+id/action_ordersFragment_to_ordersDetailFragment"
+            app:destination="@id/ordersDetailFragment" />
+    </fragment>
     <fragment
         android:id="@+id/userAddressFragment"
         android:name="com.vanlam.furnitureshop.fragments.shopping.UserAddressFragment"
@@ -103,6 +107,15 @@
         <action
             android:id="@+id/action_userAddressFragment_to_addressFragment"
             app:destination="@id/addressFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/ordersDetailFragment"
+        android:name="com.vanlam.furnitureshop.fragments.settings.OrdersDetailFragment"
+        android:label="OrdersDetailFragment"
+        tools:layout="@layout/fragment_orders_detail">
+        <argument
+            android:name="order"
+            app:argType="com.vanlam.furnitureshop.data.Order" />
     </fragment>
 
 </navigation>

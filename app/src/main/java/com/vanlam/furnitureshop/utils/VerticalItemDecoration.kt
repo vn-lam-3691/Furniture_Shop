@@ -13,6 +13,6 @@ class VerticalItemDecoration(private var amount: Int = 30): RecyclerView.ItemDec
         state: RecyclerView.State
     ) {
         super.getItemOffsets(outRect, view, parent, state)
-        outRect.bottom = 30
+        outRect.bottom = amount
     }
 }

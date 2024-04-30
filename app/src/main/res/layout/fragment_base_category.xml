@@ -13,40 +13,6 @@
         android:layout_height="match_parent">
 
         <ProgressBar
-            android:id="@+id/progress_load_offer"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:visibility="gone"
-            android:layout_marginTop="@dimen/_36sdp"
-            android:indeterminateTint="@color/g_gray700"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvOffer"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_16sdp"
-            android:layout_marginTop="@dimen/_10sdp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
-
-        <TextView
-            android:id="@+id/tvBestProducts"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:includeFontPadding="false"
-            android:fontFamily="@font/poppins_thin"
-            android:text="Best Products"
-            android:textSize="@dimen/_22ssp"
-            android:textColor="@color/black"
-            android:layout_marginTop="@dimen/_20sdp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/rvOffer"/>
-
-        <ProgressBar
             android:id="@+id/progress_load_bestProduct"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -55,7 +21,7 @@
             android:indeterminateTint="@color/g_gray700"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvBestProducts"/>
+            app:layout_constraintTop_toTopOf="@id/rvBestProduct"/>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvBestProduct"
@@ -63,11 +29,13 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_10sdp"
             android:scrollbars="none"
+            android:layout_marginEnd="@dimen/_6sdp"
+            android:layout_marginStart="@dimen/_6sdp"
             android:overScrollMode="never"
             android:clipToPadding="false"
-            app:layout_constraintStart_toStartOf="@id/rvOffer"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvBestProducts"/>
+            app:layout_constraintTop_toTopOf="parent"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

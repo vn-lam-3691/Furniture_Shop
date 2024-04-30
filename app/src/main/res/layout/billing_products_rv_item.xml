@@ -1,40 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:backgroundTint="@color/g_white"
-    app:cardElevation="0dp">
+    app:cardCornerRadius="@dimen/_5sdp"
+    app:cardElevation="@dimen/_4sdp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="match_parent">
-
-        <View
-            android:id="@+id/topLine"
-            android:layout_width="0dp"
-            android:layout_height="@dimen/_1sdp"
-            android:layout_marginTop="@dimen/_10sdp"
-            android:background="@color/white"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"/>
 
         <ImageView
             android:id="@+id/imageCartProduct"
             android:layout_width="@dimen/_80sdp"
-            android:layout_height="@dimen/_75sdp"
+            android:layout_height="@dimen/_80sdp"
             android:layout_marginBottom="@dimen/_5sdp"
-            app:layout_constraintBottom_toTopOf="@+id/topLine"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:layout_marginStart="@dimen/_5sdp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             android:scaleType="centerCrop"/>
 
         <TextView
             android:id="@+id/tvProductCartName"
-            android:layout_width="@dimen/_140sdp"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_8sdp"
             android:layout_marginTop="@dimen/_8sdp"
+            android:layout_marginEnd="@dimen/_12sdp"
             android:fontFamily="@font/poppins_light"
             android:text="Chair"
             android:textColor="@color/black"
@@ -42,7 +37,9 @@
             android:textStyle="bold"
             app:layout_constraintStart_toEndOf="@id/imageCartProduct"
             app:layout_constraintTop_toTopOf="@id/imageCartProduct"
-            android:lines="1" />
+            app:layout_constraintEnd_toEndOf="parent"
+            android:lines="1"
+            android:ellipsize="end"/>
 
         <TextView
             android:id="@+id/tvProductCartPrice"
@@ -91,11 +88,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:text="1"
+            app:layout_constraintTop_toTopOf="@id/tvProductCartPrice"
+            app:layout_constraintBottom_toBottomOf="@id/tvProductCartPrice"
+            android:text="x 1"
             android:textSize="@dimen/_12ssp"
-            android:layout_marginEnd="@dimen/_5sdp"/>
+            android:layout_marginEnd="@dimen/_12sdp"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

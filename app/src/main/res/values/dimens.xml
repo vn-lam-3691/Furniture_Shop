@@ -7,4 +7,6 @@
     <dimen name="mediumButtonWidth">@dimen/_144sdp</dimen>
     <dimen name="mediumButtonHeight">@dimen/_48sdp</dimen>
     <dimen name="edittextHeight">@dimen/_48sdp</dimen>
+    <dimen name="gridSpacing">@dimen/_10sdp</dimen>
+    <dimen name="horizontalSpacing">@dimen/_10sdp</dimen>
 </resources>

@@ -131,6 +131,10 @@ class UserAccountFragment: Fragment() {
         binding.tvUpdatePassword.setOnClickListener {
             setupAlertDialog()
         }
+
+        binding.imageCloseUserAccount.setOnClickListener {
+            findNavController().navigateUp()
+        }
     }
 
     private fun setupAlertDialog() {

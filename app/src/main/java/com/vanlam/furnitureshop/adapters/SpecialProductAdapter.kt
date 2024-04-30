@@ -12,7 +12,7 @@ import com.vanlam.furnitureshop.databinding.SpecialRvItemBinding
 class SpecialProductAdapter: RecyclerView.Adapter<SpecialProductAdapter.SpecialProductViewHolder>() {
     var onClick: ((Product) -> Unit)? = null
 
-    inner class SpecialProductViewHolder(private val binding: SpecialRvItemBinding): RecyclerView.ViewHolder(binding.root) {
+    inner class SpecialProductViewHolder(val binding: SpecialRvItemBinding): RecyclerView.ViewHolder(binding.root) {
         fun bindData(product: Product) {
             binding.apply {
                 Glide.with(itemView).load(product.images[0]).into(imageSpecialRvItem)

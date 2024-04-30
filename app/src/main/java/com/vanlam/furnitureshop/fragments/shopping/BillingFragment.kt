@@ -24,6 +24,7 @@ import com.vanlam.furnitureshop.data.OrderStatus
 import com.vanlam.furnitureshop.databinding.FragmentBillingBinding
 import com.vanlam.furnitureshop.utils.HorizontalItemDecoration
 import com.vanlam.furnitureshop.utils.Resource
+import com.vanlam.furnitureshop.utils.VerticalItemDecoration
 import com.vanlam.furnitureshop.viewmodel.BillingViewModel
 import com.vanlam.furnitureshop.viewmodel.OrderViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -158,7 +159,7 @@ class BillingFragment : Fragment() {
         binding.rvAddress.apply {
             layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
             adapter = addressAdapter
-            addItemDecoration(HorizontalItemDecoration())
+            addItemDecoration(VerticalItemDecoration())
         }
     }
 }

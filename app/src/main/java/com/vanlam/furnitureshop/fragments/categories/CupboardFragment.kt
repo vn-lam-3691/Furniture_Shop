@@ -27,25 +27,6 @@ class CupboardFragment: BaseCategoryFragment() {
         super.onViewCreated(view, savedInstanceState)
 
         lifecycleScope.launchWhenStarted {
-            viewModel.offerProducts.collectLatest {
-                when (it) {
-                    is Resource.Success -> {
-                        offerProductAdapter.differ.submitList(it.data)
-//                        hideOfferLoading()
-                    }
-                    is Resource.Loading -> {
-//                        showOfferLoading()
-                    }
-                    is Resource.Error -> {
-                        Snackbar.make(requireView(), it.message.toString(), Snackbar.LENGTH_SHORT).show()
-//                        hideOfferLoading()
-                    }
-                    else -> Unit
-                }
-            }
-        }
-
-        lifecycleScope.launchWhenStarted {
             viewModel.bestProducts.collectLatest {
                 when (it) {
                     is Resource.Success -> {

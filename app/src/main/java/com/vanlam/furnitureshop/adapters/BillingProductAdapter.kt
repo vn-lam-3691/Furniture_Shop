@@ -19,7 +19,7 @@ class BillingProductAdapter: RecyclerView.Adapter<BillingProductAdapter.BillingP
             binding.apply {
                 Glide.with(itemView).load(cartProduct.product.images[0]).into(imageCartProduct)
                 tvProductCartName.text = cartProduct.product.name
-                tvBillingProductQuantity.text = cartProduct.quantity.toString()
+                tvBillingProductQuantity.text = "x ${cartProduct.quantity.toString()}"
 
                 val priceAfterOffer = cartProduct.product.offerPercentage.getProductPrice(cartProduct.product.price)
                 tvProductCartPrice.text = "$ ${String.format("%.2f", priceAfterOffer)}"

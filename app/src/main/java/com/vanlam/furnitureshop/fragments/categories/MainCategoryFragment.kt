@@ -20,6 +20,8 @@ import com.vanlam.furnitureshop.adapters.BestProductAdapter
 import com.vanlam.furnitureshop.adapters.SpecialProductAdapter
 import com.vanlam.furnitureshop.databinding.ActivityShoppingBinding
 import com.vanlam.furnitureshop.databinding.FragmentMainCategoryBinding
+import com.vanlam.furnitureshop.utils.GridSpacingItemDecoration
+import com.vanlam.furnitureshop.utils.HorizontalItemDecoration
 import com.vanlam.furnitureshop.utils.Resource
 import com.vanlam.furnitureshop.utils.showBottomNavigationView
 import com.vanlam.furnitureshop.viewmodel.MainCategoryViewModel
@@ -146,6 +148,9 @@ class MainCategoryFragment : Fragment() {
         binding.rvSpecialProduct.apply {
             layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
             adapter = specialProductAdapter
+
+            val spacingInPixels = resources.getDimensionPixelSize(R.dimen.horizontalSpacing)
+            addItemDecoration(HorizontalItemDecoration(spacingInPixels))
         }
     }
 
@@ -154,6 +159,9 @@ class MainCategoryFragment : Fragment() {
         binding.rvBestProduct.apply {
             layoutManager = GridLayoutManager(requireContext(), 2, GridLayoutManager.VERTICAL, false)
             adapter = bestProductAdapter
+
+            val spacingInPixels = resources.getDimensionPixelSize(R.dimen.gridSpacing)
+            addItemDecoration(GridSpacingItemDecoration(spacingInPixels, 2))
         }
     }
 
@@ -162,6 +170,9 @@ class MainCategoryFragment : Fragment() {
         binding.rvBestDealProduct.apply {
             layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
             adapter = bestDealProductAdapter
+
+            val spacingInPixels = resources.getDimensionPixelSize(R.dimen.horizontalSpacing)
+            addItemDecoration(HorizontalItemDecoration(spacingInPixels))
         }
     }
 

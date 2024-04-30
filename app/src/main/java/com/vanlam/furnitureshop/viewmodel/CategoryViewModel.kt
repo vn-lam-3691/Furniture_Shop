@@ -15,38 +15,13 @@ class CategoryViewModel(
     private val category: Category
 ): ViewModel() {
 
-    private val _offerProducts = MutableStateFlow<Resource<List<Product>>>(Resource.Unspecified())
-    val offerProducts = _offerProducts.asStateFlow()
-
     private val _bestProducts = MutableStateFlow<Resource<List<Product>>>(Resource.Unspecified())
     val bestProducts = _bestProducts.asStateFlow()
 
     private val pageInfo = PageInfo()
 
     init {
-        fetchOfferProducts()
         fetchBestProducts()
-    }
-
-    fun fetchOfferProducts() {
-        viewModelScope.launch {
-            _offerProducts.emit(Resource.Loading())
-        }
-
-        firestore.collection("products")
-            .whereEqualTo("category", category.categoryName)
-            .whereNotEqualTo("offerPercentage", null).get()
-            .addOnSuccessListener {
-                val productList = it.toObjects(Product::class.java)
-                viewModelScope.launch {
-                    _offerProducts.emit(Resource.Success(productList))
-                }
-            }
-            .addOnFailureListener {
-                viewModelScope.launch {
-                    _offerProducts.emit(Resource.Error(it.message.toString()))
-                }
-            }
     }
 
     fun fetchBestProducts() {

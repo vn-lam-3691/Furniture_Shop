@@ -149,7 +149,7 @@ class CartFragment: Fragment() {
         binding.rcvCartProduct.apply {
             layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
             adapter = cartAdapter
-            addItemDecoration(VerticalItemDecoration())
+            addItemDecoration(VerticalItemDecoration(40))
         }
     }
 }

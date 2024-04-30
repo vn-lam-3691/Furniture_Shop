@@ -100,10 +100,10 @@ class UserAccountViewModel @Inject constructor(
         }
     }
 
-    private fun saveUserInfoWithoutImage(user: User, shouldRetrivedOldImage: Boolean) {
+    private fun saveUserInfoWithoutImage(user: User, shouldRetrievedOldImage: Boolean) {
         firestore.runTransaction { transition ->
             val documentRef = firestore.collection("user").document(auth.uid!!)
-            if (shouldRetrivedOldImage) {
+            if (shouldRetrievedOldImage) {
                 val currentUser = transition.get(documentRef).toObject(User::class.java)
                 val newUser = User(user.firstName, user.lastName, user.email, currentUser?.imagePath ?: "")
                 transition.set(documentRef, newUser)

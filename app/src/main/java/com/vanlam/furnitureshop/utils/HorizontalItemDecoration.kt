@@ -13,6 +13,6 @@ class HorizontalItemDecoration(private var amount: Int = 30): RecyclerView.ItemD
         state: RecyclerView.State
     ) {
         super.getItemOffsets(outRect, view, parent, state)
-        outRect.right = 30
+        outRect.right = amount
     }
 }
